@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 82895f66b5fa68c468057a2e4a0a22b2
+timeCreated: 1533929597
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - meteor: {fileID: 1622886397429462, guid: 10281292499100f4e8175a97d5cc99b0, type: 2}
+  - tur1: {fileID: 1483229930115540, guid: 776f6f9540621534bbb2d87699a1785e, type: 2}
+  - tur2: {fileID: 1288146878081702, guid: ddd6cf37e95493b4c9d4c0832955445e, type: 2}
+  - tur3: {fileID: 1326254768663758, guid: 5f016803a68ca194f99a0ba822be4518, type: 2}
+  - met: {instanceID: 0}
+  - spawnClone: {fileID: 1622886397429462, guid: 10281292499100f4e8175a97d5cc99b0,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

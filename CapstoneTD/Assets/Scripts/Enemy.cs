@@ -3,13 +3,33 @@
 public class Enemy : MonoBehaviour {
 
     public float speed = 10f;
-
+    public int health = 100;
     private Transform target;
     private int wavepointIndex = 0;
+    public int value = 50;
+    private bool isDead = false;
 
     void Start()
     {
         target = Waypoints.points[0];
+    }
+
+    public void takeDamage(int amount)
+    {
+        health -= amount;
+        if(health <= 0 && !isDead)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        isDead = true;
+        //get money for kills
+        Stats.money += value;
+        WaveSpawner.enemiesAlive--; 
+        Destroy(gameObject);
     }
 
     //direction to point to get to waypoints
@@ -25,21 +45,25 @@ public class Enemy : MonoBehaviour {
         if(Vector3.Distance(transform.position, target.position) <= 0.4f)
         {
             GetNextWaypoint();
-
         }
     }
 
     void GetNextWaypoint()
     {
-
         if(wavepointIndex >= Waypoints.points.Length - 1)
         {
             //enemy is dead
-            Destroy(gameObject);
+            EndPath();
             return;
         }
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
     }
 
+    void EndPath()
+    {
+        Stats.lives--;
+        WaveSpawner.enemiesAlive--; // current amount of enemies in scene
+        Destroy(gameObject);
+    }
 }

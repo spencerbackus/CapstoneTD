@@ -8,16 +8,19 @@ public class Turret : MonoBehaviour {
     [Header("Attributes")]
 
     public float range = 15f; //range of the turret
+
+    [Header("Use Bullets")]
+
+    public GameObject bulletPrefab;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+
 
     [Header("Unity Setup Fields")]
 
     public string enemyTag = "Enemy";
-
     public Transform partToRotate;
     public float turnSpeed = 10f;
-    public GameObject bulletPrefab;
     public Transform firePoint;
 
 
@@ -30,7 +33,7 @@ public class Turret : MonoBehaviour {
     {
         //searches objects marked as enemy, finds closest one and checks if its in range
         //if it is, set it as the target
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); //similar to meteor script checking tags
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
@@ -58,13 +61,8 @@ public class Turret : MonoBehaviour {
     {
         if (target == null)
             return;
-        //target lock on
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        //smoothly transition the rotations of the turret
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime*turnSpeed).eulerAngles;
-        //only rotate the y axis
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        LockOnTarget();
 
         if (fireCountdown <= 0f)
         {
@@ -73,8 +71,21 @@ public class Turret : MonoBehaviour {
         }
         //every second firecountdown is reduced by 1
         fireCountdown -= Time.deltaTime;
-
     }
+
+
+
+    void LockOnTarget()
+    {
+        //target lock on
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        //smoothly transition the rotations of the turret
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        //only rotate the y axis
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
 
     void Shoot()
     {
@@ -95,4 +106,6 @@ public class Turret : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, range);
 
 	}
+
+    
 }

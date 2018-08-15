@@ -10,16 +10,15 @@ public class BuildManager : MonoBehaviour {
     { 
         if(instance != null)
         {
-            Debug.LogError("More than one BuildManager in scene!");
+            Debug.LogError("another build manager");
         }
         instance = this;
     }
 
 
-    public GameObject advancedTurretPrefab;
-    public GameObject standardTurretPrefab;
-
     private TurretBlueprint turretToBuild;
+    private Node selectedTurret;
+    public TurretUI turretUI;
 
     //property
     //only allowed to get something from the variable, functionally like checking if turrettobuild is null and returning
@@ -27,26 +26,37 @@ public class BuildManager : MonoBehaviour {
     public bool HasMoney { get { return Stats.money >= turretToBuild.cost; } }
 
 
-    public void BuildTurretOn(Node node)
+    public void SelectNode(Node node)
     {
-        if (Stats.money < turretToBuild.cost)
+        //if the node is equal to the already selected node
+        if(selectedTurret == node)
         {
-            Debug.Log("Not enough money!");
+            DeselectTurret();
             return;
         }
-
-        Stats.money -= turretToBuild.cost; //subtract money when purchasing
-        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
-        node.turret = turret;  
-
+        selectedTurret = node;
+        turretToBuild = null;
+       
+    
+        turretUI.SetTarget(node);
     }
-
+    public void DeselectTurret()
+    {
+        selectedTurret = null;
+        turretUI.Hide();
+    }
 
     public void SetTurretToBuild(TurretBlueprint turret)
     {
         //change what turret to build
         //use whatever is passed in
         turretToBuild = turret;
+        DeselectTurret();
+    }
+
+    public TurretBlueprint GetTurretToBuild()
+    {
+        return turretToBuild;
     }
 
 }

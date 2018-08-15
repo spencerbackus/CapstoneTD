@@ -67,9 +67,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4027142674441144}
   - component: {fileID: 114720617255049840}
+  - component: {fileID: 65886840506175614}
+  - component: {fileID: 114477925767495578}
   m_Layer: 0
   m_Name: StandardTurret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483229930115540}
   m_LocalRotation: {x: 0.024812853, y: -0, z: -0, w: 0.99969214}
-  m_LocalPosition: {x: 42.18, y: 0.639, z: 51.118}
+  m_LocalPosition: {x: 18.52, y: 1.91, z: 26.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4319637519477526}
@@ -245,6 +247,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786064394242770}
   m_Mesh: {fileID: 4300000, guid: 196686b89122b7448823fa7665daead5, type: 3}
+--- !u!65 &65886840506175614
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483229930115540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0805283, y: 0, z: 1.3397425}
+  m_Center: {x: -0.83006287, y: 0.49999514, z: 0.11255205}
+--- !u!114 &114477925767495578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483229930115540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b5baf0d0441c74cb20d8a1459f0f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tur1: {fileID: 0}
+  tu2: {fileID: 0}
+  tur3: {fileID: 0}
 --- !u!114 &114720617255049840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,10 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
+  bulletPrefab: {fileID: 1605261435007306, guid: 10ebe1bd2e6c09640b7ec568e849724e,
+    type: 2}
   fireRate: 1
   enemyTag: Enemy
   partToRotate: {fileID: 4319637519477526}
   turnSpeed: 10
-  bulletPrefab: {fileID: 1605261435007306, guid: 10ebe1bd2e6c09640b7ec568e849724e,
-    type: 2}
   firePoint: {fileID: 4783507912615224}

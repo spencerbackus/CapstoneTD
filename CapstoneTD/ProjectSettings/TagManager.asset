@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Turret
+  - Meteor
+  - Turret2
+  - Turret3
+  - e1
+  - e2
+  - e3
   layers:
   - Default
   - TransparentFX
